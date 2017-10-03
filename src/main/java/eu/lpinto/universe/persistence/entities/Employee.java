@@ -2,6 +2,7 @@ package eu.lpinto.universe.persistence.entities;
 
 import java.io.Serializable;
 import java.util.Calendar;
+import java.util.List;
 import javax.persistence.*;
 
 /**
@@ -42,14 +43,13 @@ public class Employee extends Person implements Serializable {
 
     public Employee(final Long externalID, final Organization organization, final WorkerProfile profile,
                     final Long id, final String name, final Calendar created, final Calendar updated) {
-
         this.externalID = externalID;
         this.organization = organization;
         this.profile = profile;
     }
 
-    public Employee(Long externalID, Organization organization, WorkerProfile profile, String email, String phone, String mobilePhone, String nif, String name, User creator, Calendar created, User updater, Calendar updated, Long id) {
-        super(email, phone, mobilePhone, nif, name, creator, created, updater, updated, id);
+    public Employee(Long externalID, Organization organization, WorkerProfile profile, String email, String phone, String mobilePhone, String street, String town, String country, String zip, String nif, List<Organization> organizations, String name, User creator, Calendar created, User updater, Calendar updated, Long id) {
+        super(email, phone, mobilePhone, street, town, country, zip, nif, organizations, name, creator, created, updater, updated, id);
         this.externalID = externalID;
         this.organization = organization;
         this.profile = profile;

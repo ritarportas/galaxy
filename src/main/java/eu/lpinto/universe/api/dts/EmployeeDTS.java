@@ -24,7 +24,12 @@ public class EmployeeDTS extends AbstractDTS<Employee, eu.lpinto.universe.api.dt
                     entity.getEmail(),
                     entity.getPhone(),
                     entity.getMobilePhone(),
+                    entity.getStreet(),
+                    entity.getTown(),
+                    entity.getCountry(),
+                    entity.getZip(),
                     entity.getNif(),
+                    AbstractDTS.abstractIDs(entity.getOrganizations()),
                     entity.getName(),
                     AbstractDTS.id(entity.getCreator()),
                     entity.getCreated(),
@@ -40,7 +45,12 @@ public class EmployeeDTS extends AbstractDTS<Employee, eu.lpinto.universe.api.dt
                     entity.getEmail(),
                     entity.getPhone(),
                     entity.getMobilePhone(),
+                    entity.getStreet(),
+                    entity.getTown(),
+                    entity.getCountry(),
+                    entity.getZip(),
                     entity.getNif(),
+                    AbstractDTS.abstractIDs(entity.getOrganizations()),
                     entity.getName(),
                     AbstractDTS.id(entity.getCreator()),
                     entity.getCreated(),
@@ -60,20 +70,25 @@ public class EmployeeDTS extends AbstractDTS<Employee, eu.lpinto.universe.api.dt
     }
 
     @Override
-    public Employee toDomain(eu.lpinto.universe.api.dto.Employee entity) {
+    public Employee toDomain(eu.lpinto.universe.api.dto.Employee dto) {
         return new Employee(
-                entity.getExternalID(),
-                OrganizationDTS.T.toDomain(entity.getOrganization()),
-                entity.getRole() == null ? null : WorkerProfile.values()[entity.getRole()],
-                entity.getEmail(),
-                entity.getPhone(),
-                entity.getMobilePhone(),
-                entity.getNif(),
-                entity.getName(),
-                UserDTS.T.toDomain(entity.getCreator()),
-                entity.getCreated(),
-                UserDTS.T.toDomain(entity.getUpdater()),
-                entity.getUpdated(),
-                entity.getId());
+                dto.getExternalID(),
+                OrganizationDTS.T.toDomain(dto.getOrganization()),
+                dto.getRole() == null ? null : WorkerProfile.values()[dto.getRole()],
+                dto.getEmail(),
+                dto.getPhone(),
+                dto.getMobilePhone(),
+                dto.getStreet(),
+                dto.getTown(),
+                dto.getCountry(),
+                dto.getZip(),
+                dto.getNif(),
+                OrganizationDTS.T.toDomainIDs(dto.getOrganizations()),
+                dto.getName(),
+                UserDTS.T.toDomain(dto.getCreator()),
+                dto.getCreated(),
+                UserDTS.T.toDomain(dto.getUpdater()),
+                dto.getUpdated(),
+                dto.getId());
     }
 }

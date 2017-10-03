@@ -2,12 +2,12 @@ package eu.lpinto.universe.persistence.entities;
 
 import java.io.Serializable;
 import java.util.Calendar;
+import java.util.List;
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
 
 /**
- * A person is a real person. This means it can represent an application user an
- * animal owner or shelter worker...
+ * A person is a real person. This means it can represent an application user an animal owner or shelter worker...
  *
  * @author Luis Pinto <code>- mail@lpinto.eu</code>
  */
@@ -26,7 +26,15 @@ public class Person extends AbstractEntity implements Serializable {
 
     private String mobilePhone;
 
+    private String street;
+    private String town;
+    private String country;
+    private String zip;
+
     private String nif;
+
+    @OneToMany
+    private List<Organization> organizations;
 
     /*
      * Constructors
@@ -43,13 +51,19 @@ public class Person extends AbstractEntity implements Serializable {
         super(name);
     }
 
-    public Person(String email, String phone, String mobilePhone, String nif, String name, User creator, Calendar created, User updater, Calendar updated, Long id) {
+    public Person(String email, String phone, String mobilePhone, String street, String town, String country, String zip, String nif, List<Organization> organizations, String name, User creator, Calendar created, User updater, Calendar updated, Long id) {
         super(name, creator, created, updater, updated, id);
         this.email = email;
         this.phone = phone;
         this.mobilePhone = mobilePhone;
+        this.street = street;
+        this.town = town;
+        this.country = country;
+        this.zip = zip;
         this.nif = nif;
+        this.organizations = organizations;
     }
+
 
     /*
      * Getters/Setters
@@ -85,4 +99,45 @@ public class Person extends AbstractEntity implements Serializable {
     public void setNif(final String nif) {
         this.nif = nif;
     }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public String getTown() {
+        return town;
+    }
+
+    public void setTown(String town) {
+        this.town = town;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getZip() {
+        return zip;
+    }
+
+    public void setZip(String zip) {
+        this.zip = zip;
+    }
+
+    public List<Organization> getOrganizations() {
+        return organizations;
+    }
+
+    public void setOrganizations(List<Organization> organizations) {
+        this.organizations = organizations;
+    }
+
 }

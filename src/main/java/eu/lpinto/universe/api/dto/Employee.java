@@ -1,6 +1,7 @@
 package eu.lpinto.universe.api.dto;
 
 import java.util.Calendar;
+import java.util.List;
 
 /**
  * Represents the relation between and organization and a person.
@@ -32,8 +33,8 @@ public class Employee extends Person {
         this.role = role;
     }
 
-    public Employee(Long externalID, Long organization, Integer role, String email, String phone, String mobilePhone, String nif, String name, Long creator, Calendar created, Long updater, Calendar updated, Long id) {
-        super(email, phone, mobilePhone, nif, name, creator, created, updater, updated, id);
+    public Employee(Long externalID, Long organization, Integer role, String email, String phone, String mobilePhone, String street, String town, String country, String zip, String nif, List<Long> organizations, String name, Long creator, Calendar created, Long updater, Calendar updated, Long id) {
+        super(email, phone, mobilePhone, street, town, country, zip, nif, organizations, name, creator, created, updater, updated, id);
         this.externalID = externalID;
         this.organization = organization;
         this.role = role;
